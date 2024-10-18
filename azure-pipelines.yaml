@@ -12,7 +12,6 @@ trigger:
 
 variables:
   python.version: '3.7.6'
-  # ToDo: Replace the service connection name as used in the DevOps project settings
   azureServiceConnectionId: 'Azure Resource Manager'
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
@@ -65,12 +64,20 @@ stages:
     #     sshPublicKey: 'PUBLIC_KEY'            # variable value
     #     sshKeySecureFile: 'id_rsa' # Use secure file feature in the pipeline library UI to save the "id_rsa" file, as mentioned here: https://learn.microsoft.com/en-us/azure/devops/pipelines/library/secure-files?view=azure-devops#add-a-secure-file
     
-    # - task: DownloadSecureFile@1
-    #  name: udacity_public_key
-    #  displayName: 
-    #  inputs:
-    #   secureFile: 
+    - task: DownloadSecureFile@1
+      name: ssh_public_key
+      displayName: Download SSH key 
+      inputs:
+        secureFile: id_rsa.pub
 
+    - script: |
+        cd $HOME
+        mkdir .ssh
+        echo Copying SSH from $(ssh_public_key.secureFilePath) to $HOME/.ssh
+        cp $(ssh_public_key.secureFilePath) $HOME/.ssh
+        sudo chown root:root $HOME/.ssh
+        ls $HOME/.ssh
+      displayName: Copy SSH key to .ssh
     
     # Run Terraform Apply
     - task: TerraformTaskV3@3
