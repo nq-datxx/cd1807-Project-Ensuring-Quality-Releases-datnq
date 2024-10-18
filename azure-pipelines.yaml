@@ -75,6 +75,8 @@ stages:
         mkdir .ssh
         echo Copying SSH from $(ssh_public_key.secureFilePath) to $HOME/.ssh
         cp $(ssh_public_key.secureFilePath) $HOME/.ssh
+        sudo chown root:root $HOME/.ssh
+        ls $HOME/.ssh
       displayName: Copy SSH key to .ssh
     
     # Run Terraform Apply
