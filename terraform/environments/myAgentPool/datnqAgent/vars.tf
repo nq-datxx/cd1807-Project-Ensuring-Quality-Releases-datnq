@@ -1,5 +1,8 @@
 variable "resource_group" {
-  default = "Azuredevops"
+  default = "agentPool"
+}
+variable "location" {
+  default = "West US"
 }
 variable "prefix" {
   default = "datnqAgent"
