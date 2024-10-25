@@ -64,20 +64,11 @@ stages:
     #     sshPublicKey: 'PUBLIC_KEY'            # variable value
     #     sshKeySecureFile: 'id_rsa' # Use secure file feature in the pipeline library UI to save the "id_rsa" file, as mentioned here: https://learn.microsoft.com/en-us/azure/devops/pipelines/library/secure-files?view=azure-devops#add-a-secure-file
     
-    - task: DownloadSecureFile@1
-      name: ssh_public_key
-      displayName: Download SSH key 
-      inputs:
-        secureFile: id_rsa.pub
-
-    - script: |
-        cd $HOME
-        mkdir .ssh
-        echo Copying SSH from $(ssh_public_key.secureFilePath) to $HOME/.ssh
-        cp $(ssh_public_key.secureFilePath) $HOME/.ssh
-        sudo chown root:root $HOME/.ssh
-        ls $HOME/.ssh
-      displayName: Copy SSH key to .ssh
+    # - task: DownloadSecureFile@1
+    #   name: ssh_public_key
+    #   displayName: Download SSH key 
+    #   inputs:
+    #     secureFile: id_rsa.pub
     
     # Run Terraform Apply
     - task: TerraformTaskV3@3
@@ -98,7 +89,7 @@ stages:
     #     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
     #     environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
 
-#--------------------------------------------#    
+  #--------------------------------------------#    
     # Postman - Install Newman    
     # ToDo: Update the command and verify the working directory
     - task: CmdLine@2
@@ -128,9 +119,9 @@ stages:
       inputs:
         testResultsFormat: 'JUnit'
         testResultsFiles: '**/TEST-*.xml'
-        searchFolder:       # ToDo
+        searchFolder: $(projectRoot)/automatedtesting/postman
         mergeTestResults: true
-        testRunTitle:       # ToDo
+        testRunTitle: 'Automated Tests Results'
 
     #--------------------------------------------#
     # Selenium (UI) Test Suite - Archive the package  
@@ -153,7 +144,7 @@ stages:
     - task: ArchiveFiles@2
       displayName: 'Archive FakeRestAPI'
       inputs:
-        rootFolderOrFile: 
+        rootFolderOrFile: $(projectRoot)/jmeter/fakerestapi
         includeRootFolder: false
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
@@ -167,7 +158,7 @@ stages:
     - task: ArchiveFiles@2
       displayName: 'Archive PerformanceTestSuite'
       inputs:
-        rootFolderOrFile: 
+        rootFolderOrFile: $(projectRoot)/jmeter/test-suite
         includeRootFolder: false
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-perftests.zip'
@@ -185,8 +176,6 @@ stages:
   # Deploy FakeRestAPI Web App
   # ToDo: Provide <environment name> you created in your DevOps project
   - deployment: FakeRestAPI
-    pool:
-      vmImage: 'Ubuntu-18.04'      
     environment: $(environmentName)
     strategy:
       runOnce:
@@ -195,8 +184,8 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App'
             inputs:
-              azureSubscription: ''     # ToDo
-              appName: ''               # ToDo
+              azureSubscription: $(azureServiceConnectionId)
+              appName: 'datnqApplication-AppService'
               appType: webApp
               package: $(Pipeline.Workspace)/<artifact>/<archiveFile>       # ToDo: Use the published zip artifact. 
           #--------------------------------------------#    
@@ -219,7 +208,6 @@ stages:
     environment:
       name: $(environmentName)
       resourceType: VirtualMachine
-      tags: selenium
     strategy:
       runOnce:
         deploy:
@@ -230,9 +218,7 @@ stages:
           - task: Bash@3
             inputs:
               targetType: 'inline'
-              script: |           
-                #! /bin/bash
-                
+              script: |
                 sudo apt-get upgrade -y
                 sudo apt-get install python3-pip -y
                 sudo apt-get install unzip -y

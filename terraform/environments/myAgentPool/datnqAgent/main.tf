@@ -77,7 +77,7 @@ resource "azurerm_network_interface" "test" {
 }
 
 resource "azurerm_linux_virtual_machine" "test" {
-  name                  = "${var.prefix}LinuxVM"
+  name                  = "${var.prefix}-linux-VM"
   location              = data.azurerm_resource_group.test.location
   resource_group_name   = data.azurerm_resource_group.test.name
   # size                  = "Standard_DS1_v2"
