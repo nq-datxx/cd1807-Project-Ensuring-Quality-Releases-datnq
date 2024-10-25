@@ -65,6 +65,12 @@ stages:
     #     sshKeySecureFile: 'id_rsa' # Use secure file feature in the pipeline library UI to save the "id_rsa" file, as mentioned here: https://learn.microsoft.com/en-us/azure/devops/pipelines/library/secure-files?view=azure-devops#add-a-secure-file
     
     - task: DownloadSecureFile@1
+      name: ssh_private_key
+      displayName: Download SSH private key 
+      inputs:
+        secureFile: id_rsa
+
+    - task: DownloadSecureFile@1
       name: ssh_public_key
       displayName: Download SSH key 
       inputs:
@@ -73,7 +79,8 @@ stages:
     - script: |
         cd $HOME
         mkdir .ssh
-        echo Copying SSH from $(ssh_public_key.secureFilePath) to $HOME/.ssh
+        echo Copying SSH keys from $(ssh_public_key.secureFilePath) to $HOME/.ssh
+        cp $(ssh_private_key.secureFilePath) $HOME/.ssh
         cp $(ssh_public_key.secureFilePath) $HOME/.ssh
         ls $HOME/.ssh
       displayName: Copy SSH key to .ssh
