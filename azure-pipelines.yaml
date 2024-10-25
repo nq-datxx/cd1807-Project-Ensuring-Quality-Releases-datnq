@@ -72,7 +72,7 @@ stages:
 
     - task: DownloadSecureFile@1
       name: ssh_public_key
-      displayName: Download SSH key 
+      displayName: Download SSH public key 
       inputs:
         secureFile: id_rsa.pub
 
@@ -80,10 +80,11 @@ stages:
         cd $HOME
         mkdir .ssh
         echo Copying SSH keys from $(ssh_public_key.secureFilePath) to $HOME/.ssh
-        cp $(ssh_private_key.secureFilePath) $HOME/.ssh
         cp $(ssh_public_key.secureFilePath) $HOME/.ssh
+        echo Copying SSH keys from $(ssh_private_key.secureFilePath) to $HOME/.ssh
+        cp $(ssh_private_key.secureFilePath) $HOME/.ssh
         ls $HOME/.ssh
-      displayName: Copy SSH key to .ssh
+      displayName: Copy SSH keys to .ssh
     
     # Run Terraform Apply
     - task: TerraformTaskV3@3
@@ -159,7 +160,7 @@ stages:
     - task: ArchiveFiles@2
       displayName: 'Archive FakeRestAPI'
       inputs:
-        rootFolderOrFile: $(projectRoot)/jmeter/fakerestapi
+        rootFolderOrFile: $(projectRoot)/automatedtesting/jmeter/fakerestapi
         includeRootFolder: false
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
