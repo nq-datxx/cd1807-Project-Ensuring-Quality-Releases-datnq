@@ -63,29 +63,7 @@ stages:
     #     knownHostsEntry: 'KNOWN_HOSTS_STRING' # variable value
     #     sshPublicKey: 'PUBLIC_KEY'            # variable value
     #     sshKeySecureFile: 'id_rsa' # Use secure file feature in the pipeline library UI to save the "id_rsa" file, as mentioned here: https://learn.microsoft.com/en-us/azure/devops/pipelines/library/secure-files?view=azure-devops#add-a-secure-file
-    
-    - task: DownloadSecureFile@1
-      name: ssh_private_key
-      displayName: Download SSH private key 
-      inputs:
-        secureFile: id_rsa
 
-    - task: DownloadSecureFile@1
-      name: ssh_public_key
-      displayName: Download SSH public key 
-      inputs:
-        secureFile: id_rsa.pub
-
-    - script: |
-        cd $HOME
-        mkdir .ssh
-        echo Copying SSH keys from $(ssh_public_key.secureFilePath) to $HOME/.ssh
-        cp $(ssh_public_key.secureFilePath) $HOME/.ssh
-        echo Copying SSH keys from $(ssh_private_key.secureFilePath) to $HOME/.ssh
-        cp $(ssh_private_key.secureFilePath) $HOME/.ssh
-        ls $HOME/.ssh
-      displayName: Copy SSH keys to .ssh
-    
     # Run Terraform Apply
     - task: TerraformTaskV3@3
       displayName: Terraform apply
@@ -203,7 +181,7 @@ stages:
               azureSubscription: $(azureServiceConnectionId)
               appName: 'datnqApplication-AppService'
               appType: webApp
-              package: $(Pipeline.Workspace)/<artifact>/<archiveFile>       # ToDo: Use the published zip artifact. 
+              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip       # ToDo: Use the published zip artifact. 
           #--------------------------------------------#    
           # Run JMeter test suite against the App Service
           - task: CmdLine@2
@@ -214,7 +192,7 @@ stages:
                 unzip -o $(Build.BuildId)-perftests.zip
                 ./apache-jmeter-5.2.1/bin/jmeter -n -t PerformanceTestSuite.jmx -j jmeter.log -f
                 cat jmeter.log                                                                           # ToDo: Write your commands
-              workingDirectory: $(Pipeline.Workspace)/<artifact>            # ToDo: Use the artifact name from the task above
+              workingDirectory: $(Pipeline.Workspace)/drop-perftests            # ToDo: Use the artifact name from the task above
               
   #--------------------------------------------#  
   # Selenium | Functional UI Tests
