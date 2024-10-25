@@ -174,7 +174,7 @@ stages:
     - task: ArchiveFiles@2
       displayName: 'Archive PerformanceTestSuite'
       inputs:
-        rootFolderOrFile: $(projectRoot)/jmeter/test-suite
+        rootFolderOrFile: $(projectRoot)/automatedtesting/jmeter/test-suite
         includeRootFolder: false
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-perftests.zip'
