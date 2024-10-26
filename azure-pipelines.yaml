@@ -8,7 +8,7 @@ trigger:
 
 # ToDo: Replace the agent pool name, if you are using Udacity Cloud lab. 
 # Otherwise, comment out the line below. 
-# pool: myAgentPool
+pool: myAgentPool
 
 variables:
   python.version: '3.7.6'
@@ -74,9 +74,8 @@ stages:
         cd $HOME
         mkdir .ssh
         echo Copying SSH from $(ssh_public_key.secureFilePath) to $HOME/.ssh
-        cp $(ssh_public_key.secureFilePath) $HOME/.ssh
-        sudo chown root:root $HOME/.ssh
-        ls $HOME/.ssh
+        cp $(ssh_public_key.secureFilePath) $HOME/.ssh && echo "Copy successful!!"
+        echo "list of files in $HOME/.ssh" && ls $HOME/.ssh
       displayName: Copy SSH key to .ssh
     
     # Run Terraform Apply
@@ -98,7 +97,7 @@ stages:
     #     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
     #     environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
 
-#--------------------------------------------#    
+    #--------------------------------------------#    
     # Postman - Install Newman    
     # ToDo: Update the command and verify the working directory
     - task: CmdLine@2
