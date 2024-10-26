@@ -127,9 +127,9 @@ stages:
       inputs:
         testResultsFormat: 'JUnit'
         testResultsFiles: '**/TEST-*.xml'
-        searchFolder:       # ToDo
+        searchFolder: $(projectRoot)/automatedtesting/postman
         mergeTestResults: true
-        testRunTitle:       # ToDo
+        testRunTitle: 'Automated Tests Results'
 
     #--------------------------------------------#
     # Selenium (UI) Test Suite - Archive the package  
