@@ -60,5 +60,5 @@ module "vm" {
   resource_group       = var.resource_group
   subnet_id            = module.network.subnet_id_test
   public_ip_address_id = module.publicip.public_ip_address_id
-  admin_user           = "udacityamdin"
+  admin_user           = "udacityadmin"
 }
