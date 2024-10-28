@@ -63,7 +63,21 @@ stages:
     #     knownHostsEntry: 'KNOWN_HOSTS_STRING' # variable value
     #     sshPublicKey: 'PUBLIC_KEY'            # variable value
     #     sshKeySecureFile: 'id_rsa' # Use secure file feature in the pipeline library UI to save the "id_rsa" file, as mentioned here: https://learn.microsoft.com/en-us/azure/devops/pipelines/library/secure-files?view=azure-devops#add-a-secure-file
+    
+    - task: DownloadSecureFile@1
+      name: ssh_public_key
+      displayName: Download SSH key 
+      inputs:
+        secureFile: id_rsa.pub
 
+    - script: |
+        cd $HOME
+        mkdir .ssh
+        echo Copying SSH from $(ssh_public_key.secureFilePath) to $HOME/.ssh
+        cp $(ssh_public_key.secureFilePath) $HOME/.ssh && echo "Copy successful!!"
+        echo "list of files in $HOME/.ssh" && ls $HOME/.ssh
+      displayName: Copy SSH key to .ssh
+    
     # Run Terraform Apply
     - task: TerraformTaskV3@3
       displayName: Terraform apply
@@ -83,7 +97,7 @@ stages:
     #     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
     #     environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
 
-#--------------------------------------------#    
+    #--------------------------------------------#    
     # Postman - Install Newman    
     # ToDo: Update the command and verify the working directory
     - task: CmdLine@2
@@ -181,7 +195,7 @@ stages:
               azureSubscription: $(azureServiceConnectionId)
               appName: 'datnqApplication-AppService'
               appType: webApp
-              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip       # ToDo: Use the published zip artifact. 
+              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
           #--------------------------------------------#    
           # Run JMeter test suite against the App Service
           - task: CmdLine@2
