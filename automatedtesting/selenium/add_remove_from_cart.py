@@ -2,11 +2,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 import time
 
 # Start the browser and navigate to https://www.saucedemo.com/
 # Initialize the Chrome browser using `webdriver.Chrome()`.
-driver = webdriver.Chrome()
+chrome_options = ChromeOptions()
+chrome_options.add_argument("--headless")
+driver = webdriver.Chrome(options=chrome_options)
 
 # Navigate to the specified URL using `driver.get()`.
 driver.get('https://www.saucedemo.com/')
