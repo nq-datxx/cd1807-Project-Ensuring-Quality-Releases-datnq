@@ -61,4 +61,5 @@ module "vm" {
   subnet_id            = module.network.subnet_id_test
   public_ip_address_id = module.publicip.public_ip_address_id
   admin_user           = "udacityadmin"
+  packerImageId        = "/subscriptions/b9e51426-d186-4d14-97ad-96ff7d42c978/resourceGroups/PROJECT3-IMAGE/providers/Microsoft.Compute/images/project3-vm-image"
 }
