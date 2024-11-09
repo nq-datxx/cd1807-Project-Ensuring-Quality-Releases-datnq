@@ -29,7 +29,7 @@ add_to_cart_buttons = [
     "button#add-to-cart-sauce-labs-bolt-t-shirt",
     "button#add-to-cart-sauce-labs-fleece-jacket",
     "button#add-to-cart-sauce-labs-onesie",
-    "button#add-to-cart-test.allthethings()-t-shirt-(red)"
+    "button#add-to-cart-test\\.allthethings\\(\\)-t-shirt-\\(red\\)"
 ]
 
 # Click the "Add to Cart" button for each item
