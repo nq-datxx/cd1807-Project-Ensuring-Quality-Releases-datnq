@@ -1,4 +1,4 @@
-# #!/usr/bin/env python
+#!/usr/bin/env python
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -6,7 +6,6 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 import time
 
 # Start the browser and navigate to https://www.saucedemo.com/
-# Initialize the Chrome browser using `webdriver.Chrome()`.
 chrome_options = ChromeOptions()
 chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(options=chrome_options)
@@ -15,40 +14,50 @@ driver = webdriver.Chrome(options=chrome_options)
 driver.get('https://www.saucedemo.com/')
 
 # Log in to the website
-# Enter the username
 driver.find_element(By.ID, 'user-name').send_keys('standard_user')
-# Enter the password
 driver.find_element(By.ID, 'password').send_keys('secret_sauce')
-# Click the login button
 driver.find_element(By.ID, 'login-button').click()
 
 # Wait for the page to load
-time.sleep(2)  # Wait for 2 seconds
+time.sleep(2)
 
-# Find the search input element and enter the search term "sauce"
-# Note: Saucedemo website does not have a search box; use the first available button as an example
-# Writing a CSS Selector for the "Add to cart" button for the first product displayed
-add_to_cart_css_selector = "button.btn_inventory"
+# Add 6 different items to the cart
+# List of CSS selectors for the "Add to Cart" buttons of the first 6 items
+add_to_cart_buttons = [
+    "button#add-to-cart-sauce-labs-backpack",
+    "button#add-to-cart-sauce-labs-bike-light",
+    "button#add-to-cart-sauce-labs-bolt-t-shirt",
+    "button#add-to-cart-sauce-labs-fleece-jacket",
+    "button#add-to-cart-sauce-labs-onesie",
+    "button#add-to-cart-test.allthethings()-t-shirt-(red)"
+]
 
-# Validate the CSS selector in the web browser console. 
-# You can do this by opening the console in the web browser and running the command:
-# document.querySelector("button.btn_inventory")
+# Click the "Add to Cart" button for each item
+for button in add_to_cart_buttons:
+    driver.find_element(By.CSS_SELECTOR, button).click()
+    time.sleep(1)  # Optional: short delay to simulate human-like actions
 
-
-# Locate the "Add to cart" button using `By.CSS_SELECTOR` and click it.
-driver.find_element(By.CSS_SELECTOR, add_to_cart_css_selector).click()
-
-# Locate the cart icon using `By.CSS_SELECTOR`.
-# Validate that the product is added to the cart by checking the cart icon
+# Check the number of items in the cart
 cart_icon = driver.find_element(By.CSS_SELECTOR, "a.shopping_cart_link")
 cart_item_count = cart_icon.text
-
-
-# Print the number of items in the cart
 print(f"Number of items in the cart: {cart_item_count}")
 
+# Now go to the cart and remove each item
+cart_icon.click()
+time.sleep(2)  # Wait for the cart page to load
+
+# Get the list of items in the cart (identified by the "remove" button for each item)
+remove_buttons = driver.find_elements(By.CSS_SELECTOR, "button.cart_button")
+for remove_button in remove_buttons:
+    remove_button.click()
+    time.sleep(1)  # Wait a second after each removal
+
+# Verify the cart is empty
+cart_item_count_after_removal = driver.find_element(By.CSS_SELECTOR, "span#cart_count").text
+print(f"Number of items in the cart after removal: {cart_item_count_after_removal}")
+
 # Optional: Add some wait time to see the results before the browser closes
-time.sleep(5)  # Wait for 5 seconds
+time.sleep(3)
 
 # Close the browser
 driver.quit()
