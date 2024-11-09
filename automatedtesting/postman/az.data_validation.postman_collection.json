@@ -1,0 +1,1030 @@
+{
+	"info": {
+		"_postman_id": "cccbc988-8064-404b-b409-457456bfe2e4",
+		"name": "az.data_validation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19324543"
+	},
+	"item": [
+		{
+			"name": "Get All Activities",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'activities';\r",
+							"var responseJson = pm.response.json();\r",
+							"var totalRecords = 30;\r",
+							"pm.test(`Count ${title} with IDs 1 - ${totalRecords}`, function (){\r",
+							"    for (i = 0; i < totalRecords; i++) {\r",
+							"        pm.expect(responseJson[i].ID).to.eql(i+1);\r",
+							"    }\r",
+							"});\r",
+							"pm.test(`Check total ${title}: ${totalRecords}`, function () {\r",
+							"    pm.expect(responseJson.length).to.eql(totalRecords);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Activities",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Authors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'authors';\r",
+							"var responseJson = pm.response.json();\r",
+							"var totalRecords = responseJson.length;\r",
+							"pm.test(`Count ${title} with IDs 1 - ${totalRecords}`, function (){\r",
+							"    for (i = 0; i < totalRecords; i++) {\r",
+							"        pm.expect(responseJson[i].ID).to.eql(i+1);\r",
+							"    }\r",
+							"});\r",
+							"pm.test(`Check total ${title}: ${totalRecords}`, function () {\r",
+							"    pm.expect(responseJson.length).to.eql(totalRecords);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Authors",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Authors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'books';\r",
+							"var responseJson = pm.response.json();\r",
+							"var totalRecords = 200;\r",
+							"pm.test(`Count ${title} with IDs 1 - ${totalRecords}`, function (){\r",
+							"    for (i = 0; i < totalRecords; i++) {\r",
+							"        pm.expect(responseJson[i].ID).to.eql(i+1);\r",
+							"    }\r",
+							"});\r",
+							"pm.test(`Check total ${title}: ${totalRecords}`, function () {\r",
+							"    pm.expect(responseJson.length).to.eql(totalRecords);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Books",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All CoverPhoto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'cover photos';\r",
+							"var responseJson = pm.response.json();\r",
+							"var totalRecords = 200;\r",
+							"pm.test(`Count ${title} with IDs 1 - ${totalRecords}`, function (){\r",
+							"    for (i = 0; i < totalRecords; i++) {\r",
+							"        pm.expect(responseJson[i].ID).to.eql(i+1);\r",
+							"    }\r",
+							"});\r",
+							"pm.test(`Check total ${title}: ${totalRecords}`, function () {\r",
+							"    pm.expect(responseJson.length).to.eql(totalRecords);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/CoverPhotos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"CoverPhotos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'users';\r",
+							"var responseJson = pm.response.json();\r",
+							"var totalRecords = 10;\r",
+							"pm.test(`Count ${title} with IDs 1 - ${totalRecords}`, function (){\r",
+							"    for (i = 0; i < totalRecords; i++) {\r",
+							"        pm.expect(responseJson[i].ID).to.eql(i+1);\r",
+							"    }\r",
+							"});\r",
+							"pm.test(`Check total ${title}: ${totalRecords}`, function () {\r",
+							"    pm.expect(responseJson.length).to.eql(totalRecords);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add an Activities",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'an activity';\r",
+							"var responseJson = pm.response.json();\r",
+							"pm.test(`Add ${title} response body as expected`, function () {\r",
+							"    pm.expect(responseJson.Title).to.eql(\"Beat thugs\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Title\": \"Beat thugs\",\r\n    \"DueDate\": \"{{$timestamp}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Activities",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add an Authors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'an author';\r",
+							"var responseJson = pm.response.json();\r",
+							"pm.test(`Add ${title} response body as expected`, function () {\r",
+							"    pm.expect(responseJson.IDBook).to.eql(123);\r",
+							"    pm.expect(responseJson.FirstName).to.eql(\"Hellow\");\r",
+							"    pm.expect(responseJson.LastName).to.eql(\"World\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"IDBook\": \"123\",\r\n    \"FirstName\": \"Hellow\",\r\n    \"LastName\": \"World\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Authors",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Authors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'a book';\r",
+							"var responseJson = pm.response.json();\r",
+							"pm.test(`Add ${title} response body as expected`, function () {\r",
+							"    pm.expect(responseJson.Title).to.eql(\"APT Book\");\r",
+							"    pm.expect(responseJson.Description).to.eql(\"interest eye go under than where again want around where system\");\r",
+							"    pm.expect(responseJson.PageCount).to.eql(100);\r",
+							"    pm.expect(responseJson.Excerpt).to.eql(\"move by eye other at about fact\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"Title\": \"APT Book\",\r\n        \"Description\": \"interest eye go under than where again want around where system\",\r\n        \"PageCount\": 100,\r\n        \"Excerpt\": \"move by eye other at about fact\",\r\n        \"PublishDate\": \"2024-11-03T08:19:49.2080647+00:00\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Books",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a Cover Photo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'a cover photo';\r",
+							"var responseJson = pm.response.json();\r",
+							"pm.test(`Add ${title} response body as expected`, function () {\r",
+							"    pm.expect(responseJson.IDBook).to.eql(23);\r",
+							"    pm.expect(responseJson.Url).to.eql(\"meme-choosebutton.jpg\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"IDBook\": 23,\r\n    \"Url\": \"meme-choosebutton.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/CoverPhotos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"CoverPhotos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'a user';\r",
+							"var responseJson = pm.response.json();\r",
+							"pm.test(`Add ${title} response body as expected`, function () {\r",
+							"    pm.expect(responseJson.UserName).to.eql(\"Chicken\");\r",
+							"    pm.expect(responseJson.Password).to.eql(\"nuggets\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserName\": \"Chicken\",\r\n    \"Password\": \"nuggets\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an Activity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'activities';\r",
+							"var responseJson = pm.response.json();\r",
+							"pm.test(`Get an expected ${title} `, function () {\r",
+							"    pm.expect(responseJson.ID).to.eql(10);\r",
+							"    pm.expect(responseJson.Title).to.eql(\"Activity 10\");\r",
+							"    pm.expect(responseJson.Completed).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Activities/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Activities",
+						"{{get_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an Author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'author';\r",
+							"var responseJson = pm.response.json();\r",
+							"pm.test(`Get an expected ${title} `, function () {\r",
+							"    pm.expect(responseJson.ID).to.eql(10);\r",
+							"    pm.expect(responseJson.IDBook).to.eql(3);\r",
+							"    pm.expect(responseJson.FirstName).to.eql(\"First Name 10\");\r",
+							"    pm.expect(responseJson.LastName).to.eql(\"Last Name 10\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Authors/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Authors",
+						"{{get_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'book';\r",
+							"var responseJson = pm.response.json();\r",
+							"var description = responseJson.Description;\r",
+							"var excerpt = responseJson.Excerpt;\r",
+							"pm.test(`Get a expected ${title} `, function () {\r",
+							"    pm.expect(responseJson.ID).to.eql(10);\r",
+							"    pm.expect(responseJson.Title).to.eql(\"Book 10\");\r",
+							"    pm.expect(responseJson.Description).to.eql(description);\r",
+							"    pm.expect(responseJson.PageCount).to.eql(1000);\r",
+							"    pm.expect(responseJson.Excerpt).to.eql(excerpt);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Books/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Books",
+						"{{get_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a CoverPhoto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'cover photo';\r",
+							"var responseJson = pm.response.json();\r",
+							"pm.test(`Get a expected ${title} `, function () {\r",
+							"    pm.expect(responseJson.ID).to.eql(10);\r",
+							"    pm.expect(responseJson.IDBook).eql(10);\r",
+							"    pm.expect(responseJson.Url).eql(\"https://placeholdit.imgix.net/~text?txtsize=33&txt=Book 10&w=250&h=350\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/CoverPhotos/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"CoverPhotos",
+						"{{get_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'user';\r",
+							"var responseJson = pm.response.json();\r",
+							"pm.test(`Get a expected ${title} `, function () {\r",
+							"    pm.expect(responseJson.ID).to.eql(10);\r",
+							"    pm.expect(responseJson.UserName).to.eql(\"User 10\");\r",
+							"    pm.expect(responseJson.Password).to.eql(\"Password10\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Users/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Users",
+						"{{get_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an Activities",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'an activity';\r",
+							"var responseJSON = pm.response.json();\r",
+							"var id = parseInt(pm.environment.get(\"update_id\"));\r",
+							"pm.test(`Update ${title} with expected value`, function() {\r",
+							"    pm.expect(responseJSON.ID).to.eql(id);\r",
+							"    pm.expect(responseJSON.Title).to.eql(\"Henshin\");\r",
+							"    pm.expect(responseJSON.Completed).to.eql(false);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ID\": {{update_id}},\r\n    \"Title\": \"Henshin\",\r\n    \"DueDate\": \"2024-01-01T00:00:00\",\r\n    \"Completed\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Activities/{{update_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Activities",
+						"{{update_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an Author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'an author';\r",
+							"var responseJSON = pm.response.json();\r",
+							"var id = parseInt(pm.environment.get(\"update_id\"));\r",
+							"pm.test(`Update ${title} with expected value`, function() {\r",
+							"    pm.expect(responseJSON.ID).to.eql(id);\r",
+							"    pm.expect(responseJSON.IDBook).to.eql(5);\r",
+							"    pm.expect(responseJSON.FirstName).to.eql(\"Spoo-de-man\");\r",
+							"    pm.expect(responseJSON.LastName).to.eql(\"Jason\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ID\": {{update_id}},\r\n    \"IDBook\": 5,\r\n    \"FirstName\": \"Spoo-de-man\",\r\n    \"LastName\": \"Jason\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Authors/{{update_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Authors",
+						"{{update_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'a book';\r",
+							"var responseJSON = pm.response.json();\r",
+							"var id = parseInt(pm.environment.get(\"update_id\"));\r",
+							"pm.test(`Update ${title} with expected value`, function() {\r",
+							"    pm.expect(responseJSON.ID).to.eql(id);\r",
+							"    pm.expect(responseJSON.Title).to.eql(\"Is that plane?\");\r",
+							"    pm.expect(responseJSON.Description).to.eql(null);\r",
+							"    pm.expect(responseJSON.PageCount).to.eql(1000);\r",
+							"    pm.expect(responseJSON.Excerpt).to.eql(null);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ID\": {{update_id}},\r\n    \"Title\": \"Is that plane?\",\r\n    \"Description\": null,\r\n    \"PageCount\": 1000,\r\n    \"Excerpt\": null,\r\n    \"PublishDate\": \"2024-01-01T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Books/{{update_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Books",
+						"{{update_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a CoverPhoto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'a cover photo';\r",
+							"var responseJSON = pm.response.json();\r",
+							"var id = parseInt(pm.environment.get(\"update_id\"));\r",
+							"pm.test(`Update ${title} with expected value`, function() {\r",
+							"    pm.expect(responseJSON.ID).to.eql(id);\r",
+							"    pm.expect(responseJSON.IDBook).to.eql(10);\r",
+							"    pm.expect(responseJSON.Url).to.eql(\"https://somethingintheway.com/meme-shinzuka.jpg\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ID\": {{update_id}},\r\n    \"IDBook\": 10,\r\n    \"Url\": \"https://somethingintheway.com/meme-shinzuka.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/CoverPhotos/{{update_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"CoverPhotos",
+						"{{update_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'a user';\r",
+							"var responseJSON = pm.response.json();\r",
+							"var id = parseInt(pm.environment.get(\"update_id\"));\r",
+							"pm.test(`Update ${title} with expected value`, function() {\r",
+							"    pm.expect(responseJSON.ID).to.eql(id);\r",
+							"    pm.expect(responseJSON.UserName).to.eql(\"Martian\");\r",
+							"    pm.expect(responseJSON.Password).to.eql(\"Manhunter\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ID\": {{update_id}},\r\n    \"UserName\": \"Martian\",\r\n    \"Password\": \"Manhunter\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Users/{{update_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Users",
+						"{{update_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete An Activity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'an activities';\r",
+							"pm.test(`Delete ${title} endpoint result as expected`, function () {\r",
+							"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Activities/{{delete_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Activities",
+						"{{delete_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete An Author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'an author';\r",
+							"pm.test(`Delete ${title} endpoint result as expected`, function () {\r",
+							"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Authors/{{delete_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Authors",
+						"{{delete_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete A Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'an book';\r",
+							"pm.test(`Delete ${title} endpoint result as expected`, function () {\r",
+							"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Books/{{delete_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Books",
+						"{{delete_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete A Cover Photo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'a cover photo';\r",
+							"pm.test(`Delete ${title} endpoint result as expected`, function () {\r",
+							"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/CoverPhotos/{{delete_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"CoverPhotos",
+						"{{delete_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete A User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var title = 'a user';\r",
+							"pm.test(`Delete ${title} endpoint result as expected`, function () {\r",
+							"    pm.expect(pm.response.text()).to.eql(\"\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Users/{{delete_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Users",
+						"{{delete_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
