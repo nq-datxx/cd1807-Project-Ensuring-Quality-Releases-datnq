@@ -53,7 +53,7 @@ for remove_button in remove_buttons:
     time.sleep(1)  # Wait a second after each removal
 
 # Verify the cart is empty
-cart_item_count_after_removal = driver.find_element(By.CSS_SELECTOR, "span#cart_count").text
+cart_item_count_after_removal = driver.find_element(By.CSS_SELECTOR, "a.shopping_cart_link").text
 print(f"Number of items in the cart after removal: {cart_item_count_after_removal}")
 
 # Optional: Add some wait time to see the results before the browser closes
