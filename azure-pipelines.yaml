@@ -97,40 +97,6 @@ stages:
     #     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
     #     environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
 
-    #--------------------------------------------#    
-    # Postman - Install Newman    
-    # ToDo: Update the command and verify the working directory
-    - task: CmdLine@2
-      displayName: Install Newman
-      inputs:
-        script: 'sudo npm install -g newman'
-        workingDirectory: $(System.DefaultWorkingDirectory)
-    # Postman Data Validation Test Suite    
-    # ToDo: Verify the working directory
-    - task: CmdLine@2
-      displayName: Run Data Validation Tests
-      continueOnError: true
-      inputs:
-        script: 'newman run az.data_validation.postman_collection.json -e az.regression.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-DataValidation.xml'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
-    # Postman Regression Test Suite    
-    # ToDo: Verify the working directory
-    - task: CmdLine@2
-      displayName: Run Regression Tests
-      continueOnError: true
-      inputs:
-        script: 'newman run az.regression.postman_collection.json -e az.regression.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-Regression.xml'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
-    # Postman - Publish Results 
-    # ToDo: Complete the task as explained here: https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=trx%2Cyaml#yaml-snippet
-    - task: PublishTestResults@2
-      inputs:
-        testResultsFormat: 'JUnit'
-        testResultsFiles: '**/TEST-*.xml'
-        searchFolder: $(projectRoot)/automatedtesting/postman
-        mergeTestResults: true
-        testRunTitle: 'Automated Tests Results'
-
     #--------------------------------------------#
     # Selenium (UI) Test Suite - Archive the package  
     # "ArchiveFiles@2" picks up the web package and archives it.
@@ -197,6 +163,39 @@ stages:
               appName: 'datnqApplication-AppService'
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
+          #--------------------------------------------#    
+          # Postman - Install Newman    
+          # ToDo: Update the command and verify the working directory
+          - task: CmdLine@2
+            displayName: Install Newman
+            inputs:
+              script: 'sudo npm install -g newman'
+              workingDirectory: $(System.DefaultWorkingDirectory)/automatedtesting/postman
+          # Postman Data Validation Test Suite    
+          # ToDo: Verify the working directory
+          - task: CmdLine@2
+            displayName: Run Data Validation Tests
+            continueOnError: true
+            inputs:
+              script: 'newman run az.data_validation.postman_collection.json -e az.regression.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-DataValidation.xml'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+          # Postman Regression Test Suite    
+          # ToDo: Verify the working directory
+          - task: CmdLine@2
+            displayName: Run Regression Tests
+            continueOnError: true
+            inputs:
+              script: 'newman run az.regression.postman_collection.json -e az.regression.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-Regression.xml'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+            # Postman - Publish Results 
+          # ToDo: Complete the task as explained here: https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=trx%2Cyaml#yaml-snippet
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '**/TEST-*.xml'
+              searchFolder: $(projectRoot)/automatedtesting/postman
+              mergeTestResults: true
+              testRunTitle: 'Automated Tests Results'
           #--------------------------------------------#    
           # Run JMeter test suite against the App Service
           - task: CmdLine@2
