@@ -1,0 +1,1221 @@
+{
+	"info": {
+		"_postman_id": "26f4ff23-4259-4882-9ad6-bb45606dd179",
+		"name": "az.regression",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19324543"
+	},
+	"item": [
+		{
+			"name": "Get All Activities",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get All Activities endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/Activities",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Authors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get All Authors endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/Authors",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Authors"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Authors'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get All Books endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/Books",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Books"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Books'"
+			},
+			"response": []
+		},
+		{
+			"name": "Gets All CoverPhotos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Gets all CoverPhotos endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/CoverPhotos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"CoverPhotos"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET --header 'Accept: application/json' '{{url}}/api/CoverPhotos'"
+			},
+			"response": []
+		},
+		{
+			"name": "Gets all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Gets all Users endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/Users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Users"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET --header 'Accept: application/json' '{{url}}/api/CoverPhotos'"
+			},
+			"response": []
+		},
+		{
+			"name": "Add an Activity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var activity = pm.environment.get(\"activity_title\");\r",
+							"pm.test(\"Add an Activity endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Create an Activity contain input \" + activity, function () {\r",
+							"    pm.expect(pm.response.text()).to.include(activity)\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Title\": \"{{activity_title}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Activities",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add an Author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Add an Author endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ID\": 1,\r\n    \"IDBook\": 1,\r\n    \"FirstName\": \"Bruce\",\r\n    \"LastName\": \"Wayne\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Authors",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Authors"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\r\n        \"ID\": 1,\r\n        \"IDBook\": 1,\r\n        \"FirstName\": \"Bruce\",\r\n        \"LastName\": \"Wayne\"\r\n    }' 'https://datnqapplication-appservice.azurewebsites.net/api/Authors'"
+			},
+			"response": []
+		},
+		{
+			"name": "Add a Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Add a Book endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ID\": \"2\",\r\n    \"Title\": \"something-udacity\",\r\n    \"Description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et urna elementum, venenatis ipsum eu, euismod purus. Maecenas nec erat imperdiet, porta magna vitae, condimentum magna. Aliquam erat volutpat. Vestibulum ut velit hendrerit, cursus libero at, consectetur nisl. Morbi nec porta tellus. Curabitur vitae sapien nec metus tincidunt sagittis. Fusce rhoncus mauris aliquet suscipit mattis. Suspendisse interdum hendrerit viverra.\",\r\n    \"PageCount\": 1,\r\n    \"Excerpt\": \"Praesent fermentum diam sed ligula tincidunt, ac sollicitudin dolor consectetur. Nam ut neque feugiat, ultricies quam quis, venenatis tellus. Sed nibh lectus, pulvinar ac elit vel, suscipit sagittis tortor. Proin fermentum nisl ut nulla mollis, ac fermentum quam ornare. In hac habitasse platea dictumst. Proin at leo auctor, molestie lorem ac, consectetur odio. Morbi et massa suscipit, laoreet enim efficitur, blandit urna. Duis id mi et massa euismod pharetra. Phasellus at finibus quam. Quisque sit amet scelerisque tortor, sed posuere risus. Cras ipsum neque, rhoncus eu accumsan id, semper et augue. Integer nec maximus ante. In hac habitasse platea dictumst. In hendrerit nunc ipsum, eget scelerisque lectus efficitur nec. Integer sodales finibus diam eu ultricies. Curabitur eget arcu non augue sagittis iaculis tristique et nisi.\",\r\n    \"PublishDate\": \"{{$timestamp}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Books",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Books"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"ID\":\"2\",\"Title\":\"something-udacity\",\"Description\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et urna elementum, venenatis ipsum eu, euismod purus. Maecenas nec erat imperdiet, porta magna vitae, condimentum magna. Aliquam erat volutpat. Vestibulum ut velit hendrerit, cursus libero at, consectetur nisl. Morbi nec porta tellus. Curabitur vitae sapien nec metus tincidunt sagittis. Fusce rhoncus mauris aliquet suscipit mattis. Suspendisse interdum hendrerit viverra.\",\"PageCount\":1,\"Excerpt\":\"Praesent fermentum diam sed ligula tincidunt, ac sollicitudin dolor consectetur. Nam ut neque feugiat, ultricies quam quis, venenatis tellus. Sed nibh lectus, pulvinar ac elit vel, suscipit sagittis tortor. Proin fermentum nisl ut nulla mollis, ac fermentum quam ornare. In hac habitasse platea dictumst. Proin at leo auctor, molestie lorem ac, consectetur odio. Morbi et massa suscipit, laoreet enim efficitur, blandit urna. Duis id mi et massa euismod pharetra. Phasellus at finibus quam. Quisque sit amet scelerisque tortor, sed posuere risus. Cras ipsum neque, rhoncus eu accumsan id, semper et augue. Integer nec maximus ante. In hac habitasse platea dictumst. In hendrerit nunc ipsum, eget scelerisque lectus efficitur nec. Integer sodales finibus diam eu ultricies. Curabitur eget arcu non augue sagittis iaculis tristique et nisi.\",\"PublishDate\": \"123\"' 'https://datnqapplication-appservice.azurewebsites.net/api/Books'"
+			},
+			"response": []
+		},
+		{
+			"name": "Add a CoverPhoto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Add a CoverPhoto endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"IDBook\": 5,\r\n    \"Url\": \"https://somethingintheway.com/batman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/CoverPhotos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"CoverPhotos"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"ID\":\"2\",\"Title\":\"something-udacity\",\"Description\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et urna elementum, venenatis ipsum eu, euismod purus. Maecenas nec erat imperdiet, porta magna vitae, condimentum magna. Aliquam erat volutpat. Vestibulum ut velit hendrerit, cursus libero at, consectetur nisl. Morbi nec porta tellus. Curabitur vitae sapien nec metus tincidunt sagittis. Fusce rhoncus mauris aliquet suscipit mattis. Suspendisse interdum hendrerit viverra.\",\"PageCount\":1,\"Excerpt\":\"Praesent fermentum diam sed ligula tincidunt, ac sollicitudin dolor consectetur. Nam ut neque feugiat, ultricies quam quis, venenatis tellus. Sed nibh lectus, pulvinar ac elit vel, suscipit sagittis tortor. Proin fermentum nisl ut nulla mollis, ac fermentum quam ornare. In hac habitasse platea dictumst. Proin at leo auctor, molestie lorem ac, consectetur odio. Morbi et massa suscipit, laoreet enim efficitur, blandit urna. Duis id mi et massa euismod pharetra. Phasellus at finibus quam. Quisque sit amet scelerisque tortor, sed posuere risus. Cras ipsum neque, rhoncus eu accumsan id, semper et augue. Integer nec maximus ante. In hac habitasse platea dictumst. In hendrerit nunc ipsum, eget scelerisque lectus efficitur nec. Integer sodales finibus diam eu ultricies. Curabitur eget arcu non augue sagittis iaculis tristique et nisi.\",\"PublishDate\": \"123\"' 'https://datnqapplication-appservice.azurewebsites.net/api/Books'"
+			},
+			"response": []
+		},
+		{
+			"name": "Add a User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Add a CoverPhoto endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserName\": \"The merciless\",\r\n    \"Password\": \"The merciless\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Users"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"ID\":\"2\",\"Title\":\"something-udacity\",\"Description\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et urna elementum, venenatis ipsum eu, euismod purus. Maecenas nec erat imperdiet, porta magna vitae, condimentum magna. Aliquam erat volutpat. Vestibulum ut velit hendrerit, cursus libero at, consectetur nisl. Morbi nec porta tellus. Curabitur vitae sapien nec metus tincidunt sagittis. Fusce rhoncus mauris aliquet suscipit mattis. Suspendisse interdum hendrerit viverra.\",\"PageCount\":1,\"Excerpt\":\"Praesent fermentum diam sed ligula tincidunt, ac sollicitudin dolor consectetur. Nam ut neque feugiat, ultricies quam quis, venenatis tellus. Sed nibh lectus, pulvinar ac elit vel, suscipit sagittis tortor. Proin fermentum nisl ut nulla mollis, ac fermentum quam ornare. In hac habitasse platea dictumst. Proin at leo auctor, molestie lorem ac, consectetur odio. Morbi et massa suscipit, laoreet enim efficitur, blandit urna. Duis id mi et massa euismod pharetra. Phasellus at finibus quam. Quisque sit amet scelerisque tortor, sed posuere risus. Cras ipsum neque, rhoncus eu accumsan id, semper et augue. Integer nec maximus ante. In hac habitasse platea dictumst. In hendrerit nunc ipsum, eget scelerisque lectus efficitur nec. Integer sodales finibus diam eu ultricies. Curabitur eget arcu non augue sagittis iaculis tristique et nisi.\",\"PublishDate\": \"123\"' 'https://datnqapplication-appservice.azurewebsites.net/api/Books'"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an Activity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete an Activity endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/Activities/{{delete_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Activities",
+						"{{delete_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X DELETE --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Activities/29'"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an Author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete an Author endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/Authors/{{delete_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Authors",
+						"{{delete_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X DELETE --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Authors/0'"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete a Book endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/Books/{{delete_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Books",
+						"{{delete_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X DELETE --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Books/2'"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a CoverPhoto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete a CoverPhoto endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/CoverPhotos/{{delete_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"CoverPhotos",
+						"{{delete_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X DELETE --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Books/2'"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete a User endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/Users/{{delete_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Users",
+						"{{delete_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X DELETE --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Books/2'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get an Activity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var activity_id = pm.environment.get(\"get_id\");\r",
+							"pm.test(\"Get an Activity endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Activity ID in response is \" + activity_id, function () {\r",
+							"    pm.expect(pm.response.text()).to.include(activity_id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/Activities/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Activities",
+						"{{get_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Activities/25'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get an Author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var author_id = pm.environment.get(\"get_id\");\r",
+							"pm.test(\"Get an Author endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Author ID in response is \"+ author_id, function () {\r",
+							"    pm.expect(pm.response.text()).to.include(author_id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/Authors/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Authors",
+						"{{get_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Authors/15'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var book_id = pm.environment.get(\"get_id\");\r",
+							"pm.test(\"Get a book endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Book ID in response is \" + book_id, function () {\r",
+							"    pm.expect(pm.response.text()).to.include(book_id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/Books/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Books",
+						"{{get_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Books/2'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a CoverPhoto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var coverPhoto_id = pm.environment.get(\"get_id\");\r",
+							"pm.test(\"Get a CoverPhoto endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"CoverPhoto ID in response is \" + coverPhoto_id, function () {\r",
+							"    pm.expect(pm.response.text()).to.include(coverPhoto_id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/CoverPhotos/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"CoverPhotos",
+						"{{get_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Books/2'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var user_id = pm.environment.get(\"get_id\");\r",
+							"pm.test(\"Get a User endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"User ID in response is \" + user_id, function () {\r",
+							"    pm.expect(pm.response.text()).to.include(user_id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/Users/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Users",
+						"{{get_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/api/Books/2'"
+			},
+			"response": []
+		},
+		{
+			"name": "Update an Activity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var activity = pm.environment.get(\"activity_title\");\r",
+							"pm.test(\"Update an Activity endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Activity response object contain \" + activity, function () {\r",
+							"    pm.expect(pm.response.text()).to.include(activity);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ID\": {{update_id}},\r\n    \"Title\": \"{{activity_title}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Activities/{{update_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Activities",
+						"{{update_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\r\n        \"ID\": 30,\r\n        \"Title\": \"30 Activity\",\r\n        \"DueDate\": \"2024-11-03T05:05:37.7419403+00:00\",\r\n        \"Completed\": false\r\n    }' 'https://datnqapplication-appservice.azurewebsites.net/api/Activities/30'"
+			},
+			"response": []
+		},
+		{
+			"name": "Update an Author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var author_id = pm.environment.get(\"update_id\");\r",
+							"pm.test(\"Update an Authors endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Author response object contain \" + author_id, function () {\r",
+							"    pm.expect(pm.response.text()).to.include(author_id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ID\": {{update_id}},\r\n    \"IDBook\": 2,\r\n    \"FirstName\": \"Clark\",\r\n    \"LastName\": \"Kent\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Authors/{{update_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Authors",
+						"{{update_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"ID\":23,\"FirstName\": \"Clark\",\"LastName\": \"Kent\"}' 'https://datnqapplication-appservice.azurewebsites.net/api/Authors/23'"
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var book_id = pm.environment.get(\"update_id\");\r",
+							"pm.test(\"Update a Book endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Book response object contain \" + book_id, function () {\r",
+							"    pm.expect(pm.response.text()).to.include(book_id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ID\": {{update_id}},\r\n  \"Title\": \"The story of Batman\",\r\n  \"Description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dignissim enim turpis, quis commodo nisi luctus ac. Vivamus accumsan libero non nunc suscipit, id sodales neque posuere. Donec sagittis, orci eu lobortis pellentesque, libero sapien convallis ex, placerat semper justo leo nec odio. Integer faucibus imperdiet velit, nec congue lorem lacinia quis. Morbi id pharetra urna. Sed consectetur vel erat eu euismod. Nunc vehicula erat at diam dignissim bibendum. Curabitur dignissim tellus lacus, eu malesuada dui luctus eu. Maecenas eget sapien sagittis, consectetur odio nec, blandit est. Pellentesque ante dui, fermentum nec libero at, commodo scelerisque odio. Phasellus efficitur accumsan condimentum. Maecenas eget mauris auctor, luctus nisi vel, dignissim diam. Praesent eget tellus aliquet, ullamcorper mi et, posuere velit. Suspendisse vestibulum eleifend convallis. Quisque nec purus sed nisl interdum commodo at in dui. Sed scelerisque viverra consequat.\",\r\n  \"PageCount\": \"123\",\r\n  \"Excerpt\": \"Aliquam sodales diam vitae justo imperdiet consequat. Praesent nec dapibus erat. Mauris ullamcorper tellus nulla, ac volutpat est mattis porta. Pellentesque lacus nunc, iaculis et magna nec, sagittis sollicitudin erat. Mauris aliquet nulla nec augue vestibulum, ac maximus risus ultrices. Etiam auctor tempor nunc a interdum. Proin posuere leo vitae nisl euismod fringilla. Nulla eros massa, congue nec purus vitae, auctor luctus eros. Suspendisse eu justo hendrerit, consequat quam eu, lobortis nunc. Morbi ut luctus quam, a molestie massa. Nulla interdum mi libero, vel viverra nulla finibus eget.\",\r\n  \"PublishDate\": \"2024-11-03T03:51:29.423Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Books/{{update_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Books",
+						"{{update_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"ID\":23,\"FirstName\": \"Clark\",\"LastName\": \"Kent\"}' 'https://datnqapplication-appservice.azurewebsites.net/api/Authors/23'"
+			},
+			"response": []
+		},
+		{
+			"name": "Update a CoverPhoto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var book_id = pm.environment.get(\"update_id\");\r",
+							"pm.test(\"Update a Book endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Book response object contain \" + book_id, function () {\r",
+							"    pm.expect(pm.response.text()).to.include(book_id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ID\": {{update_id}},\r\n  \"IDBook\": 1234,\r\n  \"Url\": \"https://somethingintheway.com/~text?txtsize=33&txt=Book 2&w=250&h=350\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/CoverPhotos/{{update_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"CoverPhotos",
+						"{{update_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"ID\":23,\"FirstName\": \"Clark\",\"LastName\": \"Kent\"}' 'https://datnqapplication-appservice.azurewebsites.net/api/Authors/23'"
+			},
+			"response": []
+		},
+		{
+			"name": "Update a User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var book_id = pm.environment.get(\"update_id\");\r",
+							"pm.test(\"Update a Book endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Book response object contain \" + book_id, function () {\r",
+							"    pm.expect(pm.response.text()).to.include(book_id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ID\": {{update_id}},\r\n    \"UserName\": \"Spiderman\",\r\n    \"Password\": \"Spiderman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Users/{{update_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Users",
+						"{{update_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"ID\":23,\"FirstName\": \"Clark\",\"LastName\": \"Kent\"}' 'https://datnqapplication-appservice.azurewebsites.net/api/Authors/23'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all books of Author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get All Authors endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/authors/books/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"authors",
+						"books",
+						"{{get_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET --header 'Accept: application/json' 'https://datnqapplication-appservice.azurewebsites.net/authors/books/2'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all cover from a Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get All cover photo from Book endpoint response code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/books/covers/{{get_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"books",
+						"covers",
+						"{{get_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET --header 'Accept: application/json' '{{url}}/books/covers/2'"
+			},
+			"response": []
+		}
+	]
+}
