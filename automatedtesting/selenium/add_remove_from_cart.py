@@ -53,9 +53,8 @@ for remove_button in remove_buttons:
     time.sleep(1)  # Wait a second after each removal
 
 # Verify the cart is empty
-try:
-    cart_item_count_after_removal = driver.find_element(By.CSS_SELECTOR, "a.shopping_cart_link").text
-except:
+cart_item_count_after_removal = driver.find_element(By.CSS_SELECTOR, "a.shopping_cart_link").text
+if not cart_item_count_after_removal: 
     cart_item_count_after_removal = "0"
 print(f"Number of items in the cart after removal: {cart_item_count_after_removal}")
 
