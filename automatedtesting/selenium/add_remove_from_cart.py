@@ -54,6 +54,10 @@ cart_item_count = cart_icon.text
 ## Print the number of items in the cart
 Log(f"Number of items in the cart: {cart_item_count}")
 
+# Now go to the cart and remove each item
+cart_icon.click()
+time.sleep(2)  # Wait for the cart page to load
+
 # Get the list of items in the cart (identified by the "remove" button for each item)
 remove_buttons = driver.find_elements(By.CSS_SELECTOR, "button.cart_button")
 for remove_button in remove_buttons:
