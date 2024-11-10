@@ -476,7 +476,7 @@
 							"var responseJson = pm.response.json();\r",
 							"pm.test(`Get an expected ${title} `, function () {\r",
 							"    pm.expect(responseJson.ID).to.eql(10);\r",
-							"    pm.expect(responseJson.IDBook).to.eql(3);\r",
+							"    pm.expect(responseJson.IDBook).to.eql(4);\r",
 							"    pm.expect(responseJson.FirstName).to.eql(\"First Name 10\");\r",
 							"    pm.expect(responseJson.LastName).to.eql(\"Last Name 10\");\r",
 							"});"
